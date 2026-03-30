@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grupo YVM — Estudos Jurídicos, Econômicos e Filosóficos</title>
+<meta name="description" content="Grupo de Estudos Jurídicos, Econômicos e Filosóficos. Compensação tributária, precatórios e reforma fiscal.">
+<meta property="og:title" content="Grupo YVM — Estudos Jurídicos, Econômicos e Filosóficos">
+<meta property="og:description" content="Grupo de Estudos dedicado a criar mecanismos que melhorem a vida de advogados, operadores e cidadãos.">
+<meta property="og:type" content="website">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --navy: #162A50;
+  --navy-deep: #0E1D38;
+  --navy-light: #1E3A6E;
+  --navy-muted: #2A4A7A;
+  --cream: #F5F3EF;
+  --cream-dark: #E8E4DC;
+  --white: #FFFFFF;
+  --gold: #C4A86C;
+  --gold-light: #D4BE8C;
+  --text: #1a1a1a;
+  --text-muted: #5a5a5a;
+  --border: #d0ccc4;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  color: var(--text);
+  background: var(--white);
+  line-height: 1.7;
+}
+
+/* ─── NAVIGATION ─── */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(14, 29, 56, 0.97);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(196, 168, 108, 0.2);
+  transition: all 0.3s;
+}
+
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 2rem;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+}
+
+.nav-logo img {
+  height: 48px;
+  width: 48px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+.nav-logo-text {
+  font-family: 'Cormorant Garamond', serif;
+  color: var(--white);
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-links a {
+  color: rgba(255,255,255,0.8);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: var(--gold);
+}
+
+.nav-cta {
+  background: var(--gold) !important;
+  color: var(--navy-deep) !important;
+  padding: 8px 22px;
+  border-radius: 4px;
+  font-weight: 600 !important;
+}
+
+.nav-cta:hover {
+  background: var(--gold-light) !important;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px;
+}
+
+.hamburger span {
+  width: 24px;
+  height: 2px;
+  background: var(--white);
+  transition: all 0.3s;
+}
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(165deg, var(--navy-deep) 0%, var(--navy) 40%, var(--navy-light) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(196, 168, 108, 0.06) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(196, 168, 108, 0.04) 0%, transparent 50%);
+}
+
+.hero-content {
+  max-width: 900px;
+  text-align: center;
+  padding: 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-logo {
+  width: 252px;
+  height: 252px;
+  margin: 0 auto 2rem;
+  filter: brightness(0) invert(1);
+  display: block;
+}
+
+.hero-subtitle-top {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.85rem;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  color: var(--white);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+.hero p {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.75);
+  max-width: 650px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  background: var(--gold);
+  color: var(--navy-deep);
+  padding: 14px 36px;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-primary:hover {
+  background: var(--gold-light);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--white);
+  padding: 14px 36px;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-outline:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+/* ─── TICKER / STATS BAR ─── */
+.stats-bar {
+  background: var(--navy-deep);
+  border-top: 1px solid rgba(196, 168, 108, 0.15);
+  border-bottom: 1px solid rgba(196, 168, 108, 0.15);
+  padding: 2rem 0;
+}
+
+.stats-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  padding: 0 2rem;
+  text-align: center;
+}
+
+.stat-item h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.2rem;
+  color: var(--gold);
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+
+.stat-item p {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+/* ─── SECTIONS ─── */
+section {
+  padding: 6rem 2rem;
+}
+
+.section-light {
+  background: var(--white);
+}
+
+.section-cream {
+  background: var(--cream);
+}
+
+.section-dark {
+  background: var(--navy);
+  color: var(--white);
+}
+
+.section-deep {
+  background: var(--navy-deep);
+  color: var(--white);
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.section-tag {
+  font-size: 0.78rem;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.section-header h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.section-header p {
+  font-size: 1rem;
+  color: var(--text-muted);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+.section-dark .section-header p {
+  color: rgba(255,255,255,0.65);
+}
+
+/* ─── ABOUT / MANIFESTO ─── */
+.manifesto-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.manifesto-text h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: var(--navy);
+}
+
+.manifesto-text p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 1.2rem;
+  line-height: 1.9;
+}
+
+.manifesto-quote {
+  background: var(--navy);
+  color: var(--white);
+  padding: 3rem;
+  border-radius: 6px;
+  position: relative;
+}
+
+.manifesto-quote::before {
+  content: '\201C';
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 6rem;
+  color: var(--gold);
+  position: absolute;
+  top: -10px;
+  left: 20px;
+  opacity: 0.4;
+  line-height: 1;
+}
+
+.manifesto-quote p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-style: italic;
+  line-height: 1.7;
+  position: relative;
+  z-index: 1;
+}
+
+.manifesto-quote cite {
+  display: block;
+  margin-top: 1.5rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.8rem;
+  font-style: normal;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* ─── PILLARS ─── */
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.pillar-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 6px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.pillar-card:hover {
+  border-color: var(--gold);
+  background: rgba(196, 168, 108, 0.05);
+  transform: translateY(-4px);
+}
+
+.pillar-icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 1.5rem;
+  border: 2px solid var(--gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+}
+
+.pillar-card h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--white);
+}
+
+.pillar-card p {
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.7;
+}
+
+/* ─── FIRST PROJECT / COMPENSATION ─── */
+.project-highlight {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.project-info h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 1.5rem;
+}
+
+.project-info p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 1.2rem;
+  line-height: 1.9;
+}
+
+.legal-badges {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.legal-badge {
+  background: var(--navy);
+  color: var(--white);
+  padding: 8px 18px;
+  border-radius: 4px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.project-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.project-stat {
+  background: var(--cream);
+  border-left: 4px solid var(--navy);
+  padding: 1.5rem;
+  border-radius: 0 6px 6px 0;
+}
+
+.project-stat h4 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem;
+  color: var(--navy);
+  font-weight: 700;
+}
+
+.project-stat p {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-top: 0.3rem;
+}
+
+.project-stat cite {
+  font-size: 0.72rem;
+  color: var(--gold);
+  font-style: normal;
+  letter-spacing: 0.5px;
+}
+
+/* ─── WHO BENEFITS ─── */
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.benefit-card {
+  text-align: center;
+  padding: 2rem 1.5rem;
+}
+
+.benefit-icon {
+  width: 64px;
+  height: 64px;
+  background: var(--navy);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.2rem;
+  font-size: 1.5rem;
+}
+
+.benefit-card h4 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 0.8rem;
+}
+
+.benefit-card p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+/* ─── CTA SECTION ─── */
+.cta-section {
+  text-align: center;
+  background: linear-gradient(165deg, var(--navy-deep) 0%, var(--navy) 100%);
+  padding: 6rem 2rem;
+}
+
+.cta-section h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  color: var(--white);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.cta-section p {
+  color: rgba(255,255,255,0.65);
+  font-size: 1rem;
+  max-width: 550px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.8;
+}
+
+/* ─── FOOTER ─── */
+.footer {
+  background: #060D1A;
+  color: rgba(255,255,255,0.5);
+  padding: 4rem 2rem 2rem;
+}
+
+.footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 3rem;
+}
+
+.footer-brand img {
+  height: 102px;
+  filter: brightness(0) invert(1);
+  opacity: 0.7;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.footer-brand p {
+  font-size: 0.82rem;
+  line-height: 1.7;
+  max-width: 280px;
+}
+
+.footer-col h4 {
+  color: var(--white);
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+  font-weight: 600;
+}
+
+.footer-col ul {
+  list-style: none;
+}
+
+.footer-col li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-col a {
+  color: rgba(255,255,255,0.5);
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: color 0.3s;
+}
+
+.footer-col a:hover {
+  color: var(--gold);
+}
+
+.footer-bottom {
+  max-width: 1100px;
+  margin: 3rem auto 0;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+}
+
+/* ─── DADOS GRID ─── */
+.dados-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 1024px) {
+  .pillars-grid { grid-template-columns: repeat(2, 1fr); }
+  .benefits-grid { grid-template-columns: repeat(2, 1fr); }
+  .stats-inner { grid-template-columns: repeat(3, 1fr) !important; }
+  .footer-inner { grid-template-columns: 1fr 1fr; }
+  .dados-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .nav-links.active {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--navy-deep);
+    padding: 1.5rem 2rem;
+    gap: 1rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .hero-logo { width: 160px; height: 160px; }
+  .hero-content { padding: 1.5rem 1rem; }
+  .manifesto-grid,
+  .project-highlight { grid-template-columns: 1fr; gap: 2rem; }
+  .pillars-grid,
+  .benefits-grid,
+  .dados-grid { grid-template-columns: 1fr; }
+  .stats-inner { grid-template-columns: 1fr 1fr !important; gap: 1.5rem; }
+  .project-stats { grid-template-columns: 1fr 1fr; }
+  .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+  .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+  section { padding: 4rem 1.2rem; }
+  .manifesto-quote { padding: 2rem 1.5rem; }
+  .cta-section { padding: 4rem 1.2rem; }
+}
+
+@media (max-width: 480px) {
+  .nav-inner { padding: 0.7rem 1rem; }
+  .nav-logo-text { font-size: 1.1rem; letter-spacing: 2px; }
+  .hero-logo { width: 130px; height: 130px; }
+  .stats-inner { grid-template-columns: 1fr !important; }
+  .project-stats { grid-template-columns: 1fr; }
+  .benefits-grid { grid-template-columns: 1fr 1fr; }
+  section { padding: 3rem 1rem; }
+  .legal-badges { gap: 0.5rem; }
+  .legal-badge { font-size: 0.72rem; padding: 6px 12px; }
+  .footer { padding: 3rem 1rem 2rem; }
+}
+
+/* ─── ANIMATIONS ─── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ NAVIGATION ═══ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <img src="logo-yvm.svg" alt="Grupo YVM">
+      <span class="nav-logo-text">GRUPO YVM</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#pilares">Pilares</a></li>
+      <li><a href="#compensacao">Projeto</a></li>
+      <li><a href="#contato" class="nav-cta">Participe</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero" id="inicio">
+  <div class="hero-content">
+    <img src="logo-yvm.svg" alt="Grupo YVM" class="hero-logo">
+    <p class="hero-subtitle-top">Grupo YVM</p>
+    <h1>Grupo de Estudos em Direito,<br>Economia e Filosofia</h1>
+    <p>Reunimos advogados, procuradores, investidores, gestores de fundos e membros da sociedade civil para estudar mecanismos que melhorem a vida dos operadores do Direito e dos cidadãos brasileiros.</p>
+  </div>
+</section>
+
+<!-- ═══ STATS BAR ═══ -->
+<div class="stats-bar">
+  <div class="stats-inner" style="grid-template-columns: repeat(5, 1fr);">
+    <div class="stat-item">
+      <h3>R$ 2,4 bi</h3>
+      <p>Saldo mapeado pelo Grupo YVM</p>
+    </div>
+    <div class="stat-item">
+      <h3>9.427</h3>
+      <p>Precatórios rastreados</p>
+    </div>
+    <div class="stat-item">
+      <h3>100</h3>
+      <p>Municípios paulistas mapeados</p>
+    </div>
+    <div class="stat-item">
+      <h3>R$ 1,78 bi</h3>
+      <p>Saldo pendente só do INSS</p>
+    </div>
+    <div class="stat-item">
+      <h3>EC 136/2025</h3>
+      <p>Nova urgência constitucional</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SOBRE / MANIFESTO ═══ -->
+<section class="section-light" id="sobre">
+  <div class="container">
+    <div class="section-header fade-up">
+      <p class="section-tag">Quem Somos</p>
+    </div>
+    <div class="manifesto-grid fade-up">
+      <div class="manifesto-text">
+        <h3>Estudo, proposta e ação</h3>
+        <p style="font-style: italic; color: var(--navy); margin-bottom: 1.5rem; font-size: 1.05rem;">Pronunciamos <strong>IUM</strong>, pois o objetivo é sempre facilitar ao invés de atrapalhar.</p>
+        <p>O Grupo YVM nasce da convicção de que os maiores avanços institucionais surgem quando setores público e privado colaboram com transparência, rigor técnico e propósito comum.</p>
+        <p>Inspirados por modelos como o Americans for Tax Reform, acreditamos que grupos de estudo independentes e apartidários podem identificar ineficiências fiscais, propor reformas e criar mercados que beneficiem toda a sociedade.</p>
+        <p>Nosso foco inicial é a compensação tributária municipal com precatórios — um tema que, bem regulamentado, libera receita para os municípios, justiça para os contribuintes e oportunidades para o mercado.</p>
+      </div>
+      <div class="manifesto-quote">
+        <p>Na intersecção entre o passivo de precatórios e a inadimplência tributária existe uma solução de mercado elegante — rentável e satisfatória para todos os lados.</p>
+        <cite>Manifesto Grupo YVM</cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PILARES ═══ -->
+<section class="section-dark" id="pilares">
+  <div class="container">
+    <div class="section-header fade-up">
+      <p class="section-tag">Nossos Pilares</p>
+      <h2>Três disciplinas, um propósito</h2>
+      <p>Cada pilar do Grupo YVM é conduzido por especialistas comprometidos com a excelência acadêmica e a aplicabilidade prática.</p>
+    </div>
+    <div class="pillars-grid fade-up">
+      <div class="pillar-card">
+        <div class="pillar-icon">&#9878;</div>
+        <h3>Direito</h3>
+        <p>Direito Público, Previdenciário e Sindical. Estudo de legislações, jurisprudência e propostas normativas que ampliem o acesso à justiça e a eficiência do sistema.</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">&#9879;</div>
+        <h3>Economia</h3>
+        <p>Análise fiscal, mercados de créditos judiciais, compensação tributária e mecanismos de liquidação de passivos públicos. Criação de novos mercados e oportunidades.</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">&#9883;</div>
+        <h3>Filosofia</h3>
+        <p>Reflexão sobre justiça fiscal, ética pública e o papel das instituições na vida republicana. Fundamentação dos princípios que orientam nossas propostas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ COMPENSAÇÃO TRIBUTÁRIA ═══ -->
+<section class="section-cream" id="compensacao">
+  <div class="container">
+    <div class="section-header fade-up">
+      <p class="section-tag">Primeiro Projeto</p>
+      <h2>Compensação Tributária Municipal</h2>
+      <p>Estudo e expansão do uso de precatórios e RPVs no pagamento de débitos tributários municipais.</p>
+    </div>
+    <div class="project-highlight fade-up">
+      <div class="project-info">
+        <h3>Um modelo que beneficia todos os lados</h3>
+        <p>O programa facilita a negociação e regularização de débitos perante as Prefeituras por condições mais vantajosas ao contribuinte — com descontos sobre juros e multas, prazos maiores de parcelamento ou a utilização de precatórios como instrumento de compensação.</p>
+        <p>A partir da base legal já existente (Lei 12.400/2021 — Concilia Sorocaba, Acordo Paulista e EC 136/2025), o Grupo YVM estuda formas de replicar e aprimorar esse modelo em municípios de todo o Estado de São Paulo.</p>
+        <div class="legal-badges">
+          <span class="legal-badge">Lei 12.400/2021</span>
+          <span class="legal-badge">Acordo Paulista</span>
+          <span class="legal-badge">EC 136/2025</span>
+          <span class="legal-badge">Art. 100 CF</span>
+        </div>
+      </div>
+      <div class="project-stats">
+        <div class="project-stat">
+          <h4>100%</h4>
+          <p>Desconto em juros</p>
+          <cite>Modelo Acordo Paulista</cite>
+        </div>
+        <div class="project-stat">
+          <h4>145x</h4>
+          <p>Parcelas mensais</p>
+          <cite>Parcelamento máximo</cite>
+        </div>
+        <div class="project-stat">
+          <h4>75%</h4>
+          <p>Abatimento com precatórios</p>
+          <cite>Limite de compensação</cite>
+        </div>
+        <div class="project-stat">
+          <h4>100%</h4>
+          <p>Processo digital</p>
+          <cite>Sem deslocamento</cite>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ DADOS REAIS ═══ -->
+<section class="section-dark">
+  <div class="container">
+    <div class="section-header fade-up">
+      <p class="section-tag">Dados Reais</p>
+      <h2>O tamanho do problema — e da oportunidade</h2>
+      <p>Números extraídos diretamente dos portais do TJSP, DEPRE e Tesouro Nacional.</p>
+    </div>
+    <div class="dados-grid fade-up">
+      <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 2rem; text-align: center;">
+        <h3 style="font-size: 2.4rem; color: var(--gold); margin-bottom: 0.5rem;">R$ 471 mi</h3>
+        <h4 style="color: var(--white); font-size: 1.1rem; margin-bottom: 0.5rem;">Osasco</h4>
+        <p style="font-size: 0.85rem; color: rgba(255,255,255,0.5);">720 precatórios pendentes<br>100% sem pagamento</p>
+      </div>
+      <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 2rem; text-align: center;">
+        <h3 style="font-size: 2.4rem; color: var(--gold); margin-bottom: 0.5rem;">R$ 141 mi</h3>
+        <h4 style="color: var(--white); font-size: 1.1rem; margin-bottom: 0.5rem;">Araraquara</h4>
+        <p style="font-size: 0.85rem; color: rgba(255,255,255,0.5);">466 precatórios pendentes<br>100% sem pagamento</p>
+      </div>
+      <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 2rem; text-align: center;">
+        <h3 style="font-size: 2.4rem; color: var(--gold); margin-bottom: 0.5rem;">R$ 67 mi</h3>
+        <h4 style="color: var(--white); font-size: 1.1rem; margin-bottom: 0.5rem;">Sorocaba</h4>
+        <p style="font-size: 0.85rem; color: rgba(255,255,255,0.5);">199 precatórios no portal<br>Apenas 40% do valor pago</p>
+      </div>
+    </div>
+    <div style="margin-top: 3rem; text-align: center;" class="fade-up">
+      <div style="background: rgba(196, 168, 108, 0.1); border: 1px solid rgba(196, 168, 108, 0.25); border-radius: 6px; padding: 2rem; max-width: 800px; margin: 0 auto;">
+        <p style="font-size: 1.1rem; color: rgba(255,255,255,0.8); line-height: 1.8;">Com a <strong style="color: var(--gold);">EC 136/2025</strong>, municípios que não regularizarem seus passivos sofrerão <strong style="color: var(--gold);">sequestro de valores</strong> e <strong style="color: var(--gold);">bloqueio de transferências</strong>. A compensação tributária é, mais do que nunca, uma solução estratégica urgente.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ QUEM SE BENEFICIA ═══ -->
+<section class="section-light">
+  <div class="container">
+    <div class="section-header fade-up">
+      <p class="section-tag">Impacto</p>
+      <h2>Quem se beneficia</h2>
+      <p>O modelo gera valor para todos os agentes envolvidos no ecossistema tributário e judicial.</p>
+    </div>
+    <div class="benefits-grid fade-up">
+      <div class="benefit-card">
+        <div class="benefit-icon" style="color: white;">&#9878;</div>
+        <h4>Advocacia</h4>
+        <p>Recebimento acelerado de créditos, intermediação de negociações e novas fontes de honorários em cada operação.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon" style="color: white;">&#127970;</div>
+        <h4>Municípios</h4>
+        <p>Recuperação de receita tributária e eliminação de passivo orçamentário sem desembolso imediato de caixa.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon" style="color: white;">&#128101;</div>
+        <h4>Contribuintes</h4>
+        <p>Descontos significativos em juros e multas, parcelamento estendido e regularização fiscal simplificada.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon" style="color: white;">&#128200;</div>
+        <h4>Investidores</h4>
+        <p>Mercado secundário de precatórios com deságio, aquisição de carteiras e novos instrumentos financeiros.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section class="cta-section" id="contato">
+  <div class="container fade-up">
+    <p class="section-tag">Participe</p>
+    <h2>Junte-se ao Grupo de Estudos</h2>
+    <p>Se você é advogado, procurador, contador, economista, investidor ou cidadão interessado em reforma fiscal e justiça tributária, queremos conhecê-lo.</p>
+    <div class="hero-buttons">
+      <a href="mailto:contato@valerius.com.br" class="btn-primary">Entre em Contato</a>
+      <a href="https://wa.me/5515991588183" target="_blank" class="btn-outline">WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="logo-yvm.svg" alt="Grupo YVM">
+      <p>Grupo YVM. Estudos Jurídicos, Econômicos e Filosóficos. Independente e apartidário.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navegação</h4>
+      <ul>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#pilares">Pilares</a></li>
+        <li><a href="#compensacao">Projeto</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contato</h4>
+      <ul>
+        <li><a href="mailto:contato@valerius.com.br">contato@valerius.com.br</a></li>
+        <li><a href="tel:+5515991588183">(15) 99158-8183</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Referências Legais</h4>
+      <ul>
+        <li><a href="#">Concilia Sorocaba</a></li>
+        <li><a href="#">Acordo Paulista</a></li>
+        <li><a href="#">EC 136/2025</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Grupo YVM. Todos os direitos reservados.</span>
+    <span>Sorocaba/SP</span>
+  </div>
+</footer>
+
+<script>
+// Mobile menu
+document.getElementById('hamburger').addEventListener('click', function() {
+  document.getElementById('navLinks').classList.toggle('active');
+});
+
+// Close menu on link click
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    document.getElementById('navLinks').classList.remove('active');
+  });
+});
+
+// Scroll animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// Nav background on scroll
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('.nav');
+  if (window.scrollY > 50) {
+    nav.style.background = 'rgba(14, 29, 56, 0.99)';
+  } else {
+    nav.style.background = 'rgba(14, 29, 56, 0.97)';
+  }
+});
+</script>
+</body>
+</html>
