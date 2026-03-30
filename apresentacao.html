@@ -78,18 +78,19 @@ body {
   top: 4px; left: 4px; right: 4px; bottom: 4px;
   border: 1px solid rgba(22,42,80,0.35);
 }
-/* Corners */
+/* Corners — ornate SVG */
 .corner {
   position: absolute;
-  width: 16px; height: 16px;
-  border-color: var(--navy-deep);
-  border-style: solid;
+  width: 60px; height: 60px;
   z-index: 3;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' fill='%230E1D38'%3E%3Crect x='0' y='0' width='100' height='2.5'/%3E%3Crect x='0' y='0' width='2.5' height='100'/%3E%3Crect x='7' y='7' width='90' height='0.7' opacity='0.3'/%3E%3Crect x='7' y='7' width='0.7' height='90' opacity='0.3'/%3E%3Cpath d='M30,1.5 C20,3.5 12,9 7,16 C5,20 5.5,24 7.5,26 C5,22.5 6,18 9.5,14 C13.5,9 20,5.5 29,3.5 C33,3 35,4.5 33,8 C36,3 33,0.5 30,1.5Z'/%3E%3Cpath d='M1.5,30 C3.5,20 9,12 16,7 C20,5 24,5.5 26,7.5 C22.5,5 18,6 14,9.5 C9,13.5 5.5,20 3.5,29 C3,33 4.5,35 8,33 C3,36 0.5,33 1.5,30Z'/%3E%3Crect x='-0.5' y='2.2' width='4.5' height='4.5' rx='0.4' transform='rotate(45 1.75 4.45)'/%3E%3Cellipse cx='20' cy='2.8' rx='4' ry='1' transform='rotate(-8 20 2.8)' opacity='0.5'/%3E%3Cellipse cx='2.8' cy='20' rx='1' ry='4' transform='rotate(-8 2.8 20)' opacity='0.5'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
 }
-.corner-tl { top: 4px; left: 4px; border-width: 3px 0 0 3px; }
-.corner-tr { top: 4px; right: 4px; border-width: 3px 3px 0 0; }
-.corner-bl { bottom: 4px; left: 4px; border-width: 0 0 3px 3px; }
-.corner-br { bottom: 4px; right: 4px; border-width: 0 3px 3px 0; }
+.corner-tl { top: 3px; left: 3px; }
+.corner-tr { top: 3px; right: 3px; transform: scaleX(-1); }
+.corner-bl { bottom: 3px; left: 3px; transform: scaleY(-1); }
+.corner-br { bottom: 3px; right: 3px; transform: scale(-1); }
 
 /* Content */
 .page-content {
@@ -158,6 +159,11 @@ body {
   font-size: 7.5pt;
   color: #9a9a9a;
   letter-spacing: 1px;
+}
+
+/* ─── LOGO COLOR (black SVG → azul petróleo) ─── */
+.page img[src="logo-yvm.svg"] {
+  filter: invert(14%) sepia(44%) saturate(2200%) hue-rotate(196deg) brightness(92%) contrast(95%);
 }
 
 /* ─── COVER ─── */
@@ -404,8 +410,9 @@ body {
 <!-- Download bar -->
 <div class="download-bar">
   <span>Grupo YVM — Apresentação 2026</span>
-  <button class="download-btn" onclick="window.print()">&#8659; Baixar PDF</button>
+  <button class="download-btn" id="downloadBtn" onclick="downloadPDF()">&#8659; Baixar PDF</button>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.2/html2pdf.bundle.min.js"></script>
 
 <!-- ═══════════════════════════════════════════
      PÁG 1 — CAPA
@@ -755,5 +762,36 @@ body {
   </div>
 </div>
 
+<script>
+function downloadPDF() {
+  var btn = document.getElementById('downloadBtn');
+  var bar = document.querySelector('.download-bar');
+  btn.textContent = 'Gerando PDF...';
+  btn.disabled = true;
+  bar.style.position = 'absolute';
+
+  var wrapper = document.createElement('div');
+  document.querySelectorAll('.page').forEach(function(p) {
+    var clone = p.cloneNode(true);
+    clone.style.margin = '0';
+    clone.style.width = '780px';
+    wrapper.appendChild(clone);
+  });
+
+  html2pdf().set({
+    margin: 0,
+    filename: 'Grupo_YVM_Apresentacao_2026.pdf',
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2, useCORS: true, scrollY: 0, windowWidth: 820 },
+    jsPDF: { unit: 'px', hotfixes: ['px_scaling'], format: [780, 1100] },
+    pagebreak: { mode: 'css', before: '.page', avoid: '.stat-box, .city-card, .benefit-item, .step, .quote-block, .alert-box' }
+  }).from(wrapper).save().then(function() {
+    btn.textContent = '\u21D3 Baixar PDF';
+    btn.disabled = false;
+    bar.style.position = 'fixed';
+    wrapper.remove();
+  });
+}
+</script>
 </body>
 </html>
