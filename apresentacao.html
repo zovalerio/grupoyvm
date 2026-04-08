@@ -260,6 +260,71 @@ body {
   line-height: 1.6;
 }
 
+/* ─── DROPDOWN MUNICÍPIOS ─── */
+.dropdown-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 0;
+  margin: 4px 0 10px;
+  background: none;
+  border: 1.5px solid var(--navy-deep);
+  color: var(--navy-deep);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 10pt;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.dropdown-toggle:hover {
+  background: var(--navy-deep);
+  color: var(--cream);
+}
+.dropdown-toggle .arrow {
+  font-size: 8pt;
+  transition: transform 0.3s;
+}
+.dropdown-toggle.open .arrow {
+  transform: rotate(180deg);
+}
+.dropdown-grid {
+  display: none;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 10px 0 14px;
+}
+.dropdown-grid.show {
+  display: grid;
+}
+.dropdown-grid .city-card h3 {
+  font-size: 14pt;
+}
+.dropdown-grid .city-card .val-label {
+  font-size: 6.5pt;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-top: 4px;
+}
+.dropdown-grid .city-card .val-label.papel { color: var(--gold); }
+.dropdown-grid .city-card .val-label.depre { color: #8B3A3A; }
+.dropdown-grid .city-card .val-depre {
+  font-size: 12pt;
+  font-weight: 700;
+  color: #8B1A1A;
+  line-height: 1.2;
+}
+.dropdown-grid .city-card .val-sep {
+  width: 28px;
+  height: 1px;
+  background: rgba(14,29,56,0.15);
+  margin: 5px auto;
+}
+
 /* ─── BENEFITS ─── */
 .benefits-row {
   display: grid;
@@ -432,7 +497,7 @@ body {
     <p class="cover-subtitle">Estudos Jurídicos, Econômicos e Filosóficos</p>
     <div class="gold-bar"></div>
 
-    <p class="cover-topic">Compensação Tributária Municipal com Precatórios:<br>Um mercado de R$ 2,4 bilhões em formação</p>
+    <p class="cover-topic">Compensação Tributária Municipal com Precatórios:<br>Um mercado de R$ 4,5 bilhões em formação</p>
 
     <div style="margin-top: 36px;">
       <div class="divider"><div class="divider-diamond"></div></div>
@@ -496,27 +561,27 @@ body {
 
     <div class="stats-row">
       <div class="stat-box">
-        <h3>R$ 2,4 bi</h3>
-        <p>Saldo mapeado pelo Grupo YVM</p>
+        <h3>R$ 4,5 bi</h3>
+        <p>Valor global mapeado pelo Grupo YVM</p>
       </div>
       <div class="stat-box">
-        <h3>9.427</h3>
+        <h3>41.584</h3>
         <p>Precatórios rastreados</p>
       </div>
       <div class="stat-box">
-        <h3>100</h3>
+        <h3>136</h3>
         <p>Municípios paulistas mapeados</p>
       </div>
     </div>
 
     <div class="stats-row">
       <div class="stat-box">
-        <h3>R$ 1,78 bi</h3>
-        <p>Saldo pendente só do INSS</p>
+        <h3>14.060</h3>
+        <p>Pessoas aguardando pagamento</p>
       </div>
       <div class="stat-box stat-span2">
-        <h3>EC 136/2025</h3>
-        <p>Sequestro de verbas e bloqueio de repasses federais para municípios inadimplentes</p>
+        <h3>86% sem pagamento</h3>
+        <p>35.927 dos 41.584 processos mapeados nunca receberam um centavo</p>
       </div>
     </div>
 
@@ -549,19 +614,638 @@ body {
 
     <div class="city-cards">
       <div class="city-card">
-        <h3>R$ 471 mi</h3>
+        <h3>R$ 753 mi</h3>
+        <h4>Guarulhos</h4>
+        <p>838 precatórios pendentes<br>555 pessoas aguardando</p>
+      </div>
+      <div class="city-card">
+        <h3>R$ 502 mi</h3>
+        <h4>Campinas</h4>
+        <p>1.429 precatórios pendentes<br>719 pessoas aguardando</p>
+      </div>
+      <div class="city-card">
+        <h3>R$ 178 mi</h3>
         <h4>Osasco</h4>
-        <p>720 precatórios pendentes<br>100% sem pagamento</p>
+        <p>407 precatórios pendentes<br>179 pessoas aguardando</p>
+      </div>
+    </div>
+
+    <button class="dropdown-toggle" id="maisBtn" onclick="toggleMunicipios()">
+      Mais municípios (68) <span class="arrow">▼</span>
+    </button>
+
+    <div class="dropdown-grid" id="maisGrid">
+      <div class="city-card">
+        <h4>São José dos Campos</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 174 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 0</p>
+        <p>773 precatórios<br>268 pessoas</p>
       </div>
       <div class="city-card">
-        <h3>R$ 141 mi</h3>
-        <h4>Araraquara</h4>
-        <p>466 precatórios pendentes<br>100% sem pagamento</p>
+        <h4>Santos</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 126 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 12,2 mi</p>
+        <p>1.043 precatórios<br>386 pessoas</p>
       </div>
       <div class="city-card">
-        <h3>R$ 67 mi</h3>
+        <h4>Guarujá</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 118 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 3,4 mi</p>
+        <p>317 precatórios<br>114 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Barueri</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 116 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 0</p>
+        <p>507 precatórios<br>427 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Cotia</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 103 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 5,7 mi</p>
+        <p>815 precatórios<br>331 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Americana</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 101 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 6,1 mi</p>
+        <p>491 precatórios<br>252 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Itaquaquecetuba</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 87,8 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 6,6 mi</p>
+        <p>50 precatórios<br>25 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Ribeirão Preto</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 83,3 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 22,2 mi</p>
+        <p>2.774 precatórios<br>1.213 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Diadema</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 78,2 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 3,4 mi</p>
+        <p>231 precatórios<br>151 pessoas</p>
+      </div>
+      <div class="city-card">
         <h4>Sorocaba</h4>
-        <p>199 precatórios no portal<br>Apenas 40% do valor pago</p>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 69,4 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 49,1 mi</p>
+        <p>261 precatórios<br>169 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>São Bernardo do Campo</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 65,3 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 27,6 mi</p>
+        <p>398 precatórios<br>166 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Ferraz de Vasconcelos</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 47,7 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 38,2 mi</p>
+        <p>178 precatórios<br>145 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>São José do Rio Preto</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 40,3 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 2,0 mi</p>
+        <p>708 precatórios<br>589 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Avaré</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 38,6 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 4,3 mi</p>
+        <p>267 precatórios<br>74 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Jandira</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 31,2 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 0</p>
+        <p>146 precatórios<br>141 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Tatuí</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 28,8 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 0</p>
+        <p>31 precatórios<br>29 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Embu das Artes</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 27,9 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 20,1 mi</p>
+        <p>32 precatórios<br>23 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Catanduva</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 27,0 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 1,1 mi</p>
+        <p>123 precatórios<br>110 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Hortolândia</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 23,8 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 695 mil</p>
+        <p>369 precatórios<br>343 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Araraquara</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 23,5 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 262 mil</p>
+        <p>175 precatórios<br>103 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Caçapava</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 23,4 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 5,4 mi</p>
+        <p>51 precatórios<br>30 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Cajamar</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 23,1 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 2,3 mi</p>
+        <p>8 precatórios<br>4 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Arujá</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 23,0 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 0</p>
+        <p>18 precatórios<br>15 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Itapetininga</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 22,4 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 2,0 mi</p>
+        <p>538 precatórios<br>182 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Itapecerica da Serra</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 21,9 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 2,5 mi</p>
+        <p>89 precatórios<br>73 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Ibiúna</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 21,1 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 1,9 mi</p>
+        <p>69 precatórios<br>57 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Guaratinguetá</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 17,1 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 6,3 mi</p>
+        <p>33 precatórios<br>30 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Praia Grande</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 16,0 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 0</p>
+        <p>44 precatórios<br>18 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Atibaia</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 15,9 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 0</p>
+        <p>77 precatórios<br>74 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Itapevi</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 15,1 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 1,1 mi</p>
+        <p>104 precatórios<br>90 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Mogi das Cruzes</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 14,5 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 175 mil</p>
+        <p>177 precatórios<br>104 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Birigui</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 13,7 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 6,9 mi</p>
+        <p>112 precatórios<br>101 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Paulínia</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 13,0 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 0</p>
+        <p>284 precatórios<br>93 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Bauru</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 12,7 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 524 mil</p>
+        <p>100 precatórios<br>38 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Itatiba</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 12,5 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 37 mil</p>
+        <p>20 precatórios<br>18 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Franca</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 10,2 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 134 mil</p>
+        <p>59 precatórios<br>56 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Leme</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 9,8 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 1,2 mi</p>
+        <p>185 precatórios<br>129 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Santana da Parnaíba</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 8,6 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 0</p>
+        <p>10 precatórios<br>10 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Assis</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 7,4 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 0</p>
+        <p>71 precatórios<br>65 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Itu</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 6,9 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 0</p>
+        <p>68 precatórios<br>42 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Araras</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 5,8 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 145 mil</p>
+        <p>72 precatórios<br>62 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Poá</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 5,6 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 0</p>
+        <p>74 precatórios<br>44 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Cruzeiro</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 5,5 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 90 mil</p>
+        <p>96 precatórios<br>80 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Ourinhos</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 5,5 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 415 mil</p>
+        <p>23 precatórios<br>17 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Indaiatuba</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 5,3 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 0</p>
+        <p>29 precatórios<br>19 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Caieiras</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 5,3 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 0</p>
+        <p>22 precatórios<br>17 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Jacareí</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 5,1 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 221 mil</p>
+        <p>68 precatórios<br>53 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Bragança Paulista</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 4,8 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 0</p>
+        <p>48 precatórios<br>39 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Caraguatatuba</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 4,0 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 0</p>
+        <p>42 precatórios<br>34 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Lorena</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 3,7 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 170 mil</p>
+        <p>52 precatórios<br>30 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Altair</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 3,1 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 100 mil</p>
+        <p>11 precatórios<br>8 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Campo Limpo Paulista</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 2,7 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 0</p>
+        <p>61 precatórios<br>55 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>São Roque</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 2,3 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 0</p>
+        <p>29 precatórios<br>25 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>São João da Boa Vista</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 2,3 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 0</p>
+        <p>170 precatórios<br>81 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Botucatu</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 2,2 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 24 mil</p>
+        <p>57 precatórios<br>50 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Franco da Rocha</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 2,1 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 270 mil</p>
+        <p>12 precatórios<br>10 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Salto de Pirapora</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 1,9 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 31 mil</p>
+        <p>7 precatórios<br>4 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Jundiaí</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 1,6 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 325 mil</p>
+        <p>135 precatórios<br>6 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Alumínio</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 1,5 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 2,4 mi</p>
+        <p>4 precatórios<br>3 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Adamantina</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 1,5 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 1,2 mi</p>
+        <p>23 precatórios<br>14 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Jaboticabal</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 1,4 mi</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 0</p>
+        <p>32 precatórios<br>31 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Vinhedo</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 962 mil</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 0</p>
+        <p>9 precatórios<br>9 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Francisco Morato</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 924 mil</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 0</p>
+        <p>12 precatórios<br>11 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Ubatuba</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 605 mil</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 0</p>
+        <p>11 precatórios<br>11 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Salto</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 447 mil</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 0</p>
+        <p>22 precatórios<br>8 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Votorantim</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 372 mil</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 0</p>
+        <p>3 precatórios<br>3 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Pilar do Sul</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 356 mil</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 0</p>
+        <p>4 precatórios<br>4 pessoas</p>
+      </div>
+      <div class="city-card">
+        <h4>Araçoiaba da Serra</h4>
+        <p class="val-label papel">No Papel</p>
+        <h3>R$ 294 mil</h3>
+        <div class="val-sep"></div>
+        <p class="val-label depre">Realidade DEPRE</p>
+        <p class="val-depre">R$ 0</p>
+        <p>6 precatórios<br>6 pessoas</p>
       </div>
     </div>
 
@@ -791,6 +1475,18 @@ function downloadPDF() {
     bar.style.position = 'fixed';
     wrapper.remove();
   });
+}
+
+function toggleMunicipios() {
+  var grid = document.getElementById('maisGrid');
+  var btn = document.getElementById('maisBtn');
+  grid.classList.toggle('show');
+  btn.classList.toggle('open');
+  if (grid.classList.contains('show')) {
+    btn.innerHTML = 'Ocultar municípios <span class="arrow">&#9660;</span>';
+  } else {
+    btn.innerHTML = 'Mais municípios (68) <span class="arrow">&#9660;</span>';
+  }
 }
 </script>
 </body>
